@@ -33,6 +33,7 @@ export const Header: React.FC<HeaderProps> = ({
             <button
               onClick={onMenuToggle}
               className="lg:hidden p-2 rounded-md hover:bg-gray-100 transition-colors"
+              aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>

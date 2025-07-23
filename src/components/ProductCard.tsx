@@ -43,6 +43,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                 ? 'bg-pink-500 text-white'
                 : 'bg-white text-gray-600 hover:bg-pink-50'
             }`}
+            aria-label="Toggle favorite"
           >
             <Heart size={16} fill={product.isFavorite ? 'currentColor' : 'none'} />
           </button>
@@ -50,6 +51,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           <button
             onClick={() => setIsZoomed(true)}
             className="p-2 bg-white text-gray-600 rounded-full hover:bg-gray-50 transition-colors"
+            aria-label="Zoom in"
           >
             <ZoomIn size={16} />
           </button>
@@ -72,6 +74,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                 className={`w-2 h-2 rounded-full transition-colors ${
                   index === currentImageIndex ? 'bg-white' : 'bg-white/50'
                 }`}
+                aria-label={`View image ${index + 1}`}
               />
             ))}
           </div>
@@ -93,6 +96,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                   ? 'text-yellow-400 fill-current'
                   : 'text-gray-300'
               }`}
+              data-testid="star-icon"
             />
           ))}
           <span className="text-sm text-gray-600 ml-2">({product.rating})</span>
@@ -123,6 +127,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                                 color.toLowerCase() === 'negro' ? '#000000' :
                                 color.toLowerCase() === 'blanco' ? '#ffffff' : '#d1d5db'
               }}
+              data-testid="color-swatch"
+              title={color}
             />
           ))}
           {product.colors.length > 3 && (
@@ -163,6 +169,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         <div
           className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
           onClick={() => setIsZoomed(false)}
+          role="dialog"
+          aria-modal="true"
         >
           <div className="relative max-w-4xl max-h-full p-4">
             <img
@@ -173,6 +181,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             <button
               onClick={() => setIsZoomed(false)}
               className="absolute top-4 right-4 text-white bg-black bg-opacity-50 rounded-full p-2 hover:bg-opacity-75"
+              aria-label="Close zoom"
             >
               ×
             </button>

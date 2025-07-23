@@ -21,15 +21,22 @@ export const CategoryNavigation: React.FC<CategoryNavigationProps> = ({
   isOpen,
   onClose
 }) => {
-  const [expandedCategory, setExpandedCategory] = useState<string>('');
+  const [expandedCategory, setExpandedCategory] = useState<string>(selectedCategory);
+
+  // Update expandedCategory when selectedCategory changes from outside
+  React.useEffect(() => {
+    setExpandedCategory(selectedCategory);
+  }, [selectedCategory]);
 
   const handleCategoryClick = (categoryId: string) => {
     if (expandedCategory === categoryId) {
       setExpandedCategory('');
+      onCategorySelect(''); // Deselect category when collapsing
     } else {
       setExpandedCategory(categoryId);
       onCategorySelect(categoryId);
     }
+    onSubcategorySelect(''); // Always reset subcategory when a main category is clicked
   };
 
   const handleSubcategoryClick = (subcategoryId: string) => {
@@ -46,6 +53,7 @@ export const CategoryNavigation: React.FC<CategoryNavigationProps> = ({
         <div
           className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
           onClick={onClose}
+          data-testid="overlay"
         />
       )}
       

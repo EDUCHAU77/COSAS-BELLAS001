@@ -57,6 +57,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
         <div
           className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
           onClick={onClose}
+          data-testid="overlay"
         />
       )}
       
@@ -84,6 +85,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
               <button
                 onClick={onClose}
                 className="lg:hidden p-1 hover:bg-gray-100 rounded"
+                aria-label="Close filters"
               >
                 <X size={20} />
               </button>
